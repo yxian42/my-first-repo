@@ -1,0 +1,7 @@
+Q3:1.14 nanoseconds
+Q1 execution time:14086 microseconds, Q2 execution time:25490 microseconds
+(Q2-Q1)/10000000=0.0011404 microseconds=1.14 nanoseconds
+Q4(a):過度的函數內聯會導致程式碼膨脹，使執行檔或核心變得更大，這會消耗CPU更大的icache空間，也會減少留給pagecache的可用記憶體，進而導致頻繁的pagecache miss，光一次pagecache miss就可能觸發花費約五毫秒的disk seek，在這期間會浪費掉大量的CPU週期，拖慢整個系統的速度
+Q4(b):因為現代編譯器如GCC完全有能力在沒有人工介入的情況下自動判斷何時該進行內聯，所以手動加上inline所帶來的維護成本通常遠大於提示編譯器去做他本來就會做的事所帶來的微小價值
+Q5(a):宣告zero和vecs時發生了名稱不正確的編譯錯誤，因為程式碼中同時存在標準庫的std::vector和自訂的同名vector類別，導致編譯器無法分辨究竟要用哪一個，因而造成命名衝突並導致編譯失敗
+Q5(b):編譯器在進行名稱尋早時同時考慮了來自標準庫<vector>的std::vector和在全域範圍內自行定義的自訂模板類型vector，由於這兩者在當前的命名空間中都具備相同的合法性與能見度，編譯器無法自動決定優先順序，因而放棄編譯並報錯

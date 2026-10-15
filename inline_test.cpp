@@ -8,7 +8,7 @@ namespace co = std::chrono;
  * @param n The natural number
  * @return n + 1
  */
-inline unsigned long __attribute__((always_inline)) successor(unsigned long n)
+unsigned long  successor(unsigned long n)
 {
     return n + 1;
 }
